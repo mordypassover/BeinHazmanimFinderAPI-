@@ -9,5 +9,10 @@ public interface IQueryService
 
     Task<IEnumerable<string>> GetTypesAsync();
 
+    Task<IEnumerable<ActivityPlace>> GetAllActivitysAsync(string? category,
+            string? city,
+            decimal? maxPrice,
+            string? audience);
+
 
 }

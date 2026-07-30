@@ -1,5 +1,6 @@
 ﻿using BeinHazmanimFinderAPI.Models;
 using BeinHazmanimFinderAPI.Repositorys;
+using BeinHazmanimFinderAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeinHazmanimFinderAPI.Controllers;
@@ -9,10 +10,14 @@ namespace BeinHazmanimFinderAPI.Controllers;
 public class ActivityplacesController : ControllerBase
 {
     private readonly IActivityplacesRepository _activityplacesRepository;
-    public ActivityplacesController(IActivityplacesRepository activityplacesRepository)
+    private readonly IQueryService _queryService;
+
+    public ActivityplacesController(IActivityplacesRepository activityplacesRepository, IQueryService queryService)
     {
         _activityplacesRepository = activityplacesRepository;
+        _queryService = queryService;
     }
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ActivityPlace>>> GetAllActivityPlacesAsync()
     {
@@ -64,4 +69,14 @@ public class ActivityplacesController : ControllerBase
         return NoContent();
 
     }
+    [HttpGet("search/")]
+    public async Task<ActionResult<IEnumerable<Accommodation>>> SearchAccommodatiAsync([FromQuery] string? category, [FromQuery] string? city,
+                                             [FromQuery] decimal? maxPrice, [FromQuery] string? audience)
+    {
+        var responce = await _queryService.GetAllActivitysAsync(category, city, maxPrice, audience);
+
+        return Ok(responce);
+        
+    }
 }
+
