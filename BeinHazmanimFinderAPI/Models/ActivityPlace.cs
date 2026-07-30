@@ -14,7 +14,6 @@ public class ActivityPlace
     [Required]
     [StringLength(35)]
     [RegularExpression("^Restaurant|Water Park|Nature Trail|Museum|Historical Site|Adventure Park|Boat Trip|Visitor Center|Children Activity$")]
-
     public string Category { get; set; } = string.Empty;
 
     [Required]
@@ -48,5 +47,5 @@ public class ActivityPlace
     public bool RequiresKashrut { get; set; }=false;
 
     [StringLength(50)]
-    public string KashrutAuthority { get; set; }
+    public string? KashrutAuthority { get; set; }
 }
