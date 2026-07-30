@@ -1,5 +1,6 @@
 ﻿using BeinHazmanimFinderAPI.Models;
 using BeinHazmanimFinderAPI.Repositorys;
+using System.Security.AccessControl;
 
 namespace BeinHazmanimFinderAPI.Services
 {
@@ -48,6 +49,41 @@ namespace BeinHazmanimFinderAPI.Services
 
             return query.Select(a => a.AccommodationType).Distinct()
                         .OrderBy(t => t).ToList(); 
+        }
+
+        public async Task<IEnumerable<ActivityPlace>> GetAllActivitysAsync(
+            string? category,
+            string? city,
+            decimal? maxPrice,
+            string? audience)
+        {
+
+            var query = await _activityplacesRepository.GetAllAsync();
+
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                query = query.Where(a => a.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(city))
+            {
+                query = query.Where(a => a.City.Equals(city, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (maxPrice.HasValue)
+            {
+                query = query.Where(a => a.PricePerPerson <= maxPrice.Value);
+            }
+            if (!string.IsNullOrWhiteSpace(audience))
+            {
+                query = query.Where(a => a.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return await Task.FromResult(query
+                
+                    .OrderBy(a => a.PricePerPerson)
+                    .ThenBy(a => a.Name)
+                    .ToList());
         }
     }
 }
