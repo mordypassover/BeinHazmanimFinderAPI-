@@ -1,6 +1,7 @@
 using BeinHazmanimFinderAPI.Models;
 using BeinHazmanimFinderAPI.Repositorys;
 using Microsoft.AspNetCore.Mvc;
+using BeinHazmanimFinderAPI.Services;
 
 namespace BeinHazmanimFinderAPI.Controllers;
 
@@ -10,10 +11,12 @@ public class AccommodationsController : ControllerBase
 {
 
     private readonly IAccommodationsRepository _accommodationsRepository;
+    private readonly IQueryService _queryService;
 
-    public AccommodationsController(IAccommodationsRepository accommodationsRepository)
+    public AccommodationsController(IAccommodationsRepository accommodationsRepository, IQueryService queryService) 
     {
         _accommodationsRepository = accommodationsRepository;
+        _queryService = queryService;
     }
 
     [HttpGet]
@@ -56,7 +59,7 @@ public class AccommodationsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteAccommodatioAsync(int id)
+    public async Task<ActionResult> DeleteAccommodationAsync(int id)
     {
         bool validId = await _accommodationsRepository.DeleteAsync(id);
 
@@ -65,6 +68,21 @@ public class AccommodationsController : ControllerBase
             return NotFound();
         }
         return NoContent();
+    }
 
+
+    [HttpGet("search/")]
+    public async Task<ActionResult<IEnumerable<Accommodation>>> SearchAccommodatiAsync([FromQuery] string? city,
+                                             [FromQuery] decimal? maxPrice, [FromQuery] bool? accessible)
+    {
+        var responce = await _queryService.SearchAsync(city, maxPrice, accessible);
+
+        return Ok(responce);
+    }
+    [HttpGet("types/")]
+    public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccommodationTypesAsync()
+    {
+        var responce = await _queryService.GetTypesAsync();
+        return Ok(responce);
     }
 }

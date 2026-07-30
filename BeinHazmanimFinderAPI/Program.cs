@@ -1,4 +1,5 @@
 using BeinHazmanimFinderAPI.Repositorys;
+using BeinHazmanimFinderAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IAccommodationsRepository, AccommodationsRepository>();
 builder.Services.AddSingleton<IActivityplacesRepository, ActivityplacesRepository>();
 
+builder.Services.AddScoped<IQueryService, QueryServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

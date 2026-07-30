@@ -42,7 +42,7 @@ namespace BeinHazmanimFinderAPI.Services
                     .ThenBy(a => a.Name)
                     .ToList());
         }
-        public async Task<IEnumerable<string>> GetAccommodationTypesAsync()
+        public async Task<IEnumerable<string>> GetTypesAsync()
         {
             var query = await _accommodationsRepository.GetAllAsync();
 
