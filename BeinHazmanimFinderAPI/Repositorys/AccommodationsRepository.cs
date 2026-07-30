@@ -15,7 +15,76 @@ public class AccommodationsRepository:IAccommodationsRepository
         {
             new Accommodation
             {
+                Id = 1,
 
+                Name = "King David Suites",
+
+                AccommodationType = "Hotel",
+
+                City ="Jerusalem",
+
+                Area = "City Center",
+
+                KashrutAuthority = "Eida Charedit",
+
+                PricePerNight = 950,
+
+                MaximumGuests = 4,
+
+                AvailableFrom = new DateTime(2026-08-01),
+
+                IsAccessible = true,
+
+                IsAbroad = false
+
+            },
+            new Accommodation
+            {
+                Id = 2,
+
+                Name = "Ramat Shlomo Apartment",
+
+                AccommodationType = "Vacation Apartment",
+
+                City ="Jerusalem",
+
+                Area = "Ramat Shlomo",
+
+                KashrutAuthority = "Eida Charedit",
+
+                PricePerNight = 520,
+
+                MaximumGuests = 6,
+
+                AvailableFrom = new DateTime(2026-08-02),
+
+                IsAccessible = false,
+
+                IsAbroad = false
+            },
+            new Accommodation
+            {
+                Id = 3,
+
+                Name = "Rabbi Akiva Guest House",
+
+                AccommodationType = "Guest House",
+
+                City ="Bnei Brak",
+
+                Area = "Rabbi Akiva",
+
+                KashrutAuthority = "Rav Landau",
+
+                PricePerNight = 430,
+
+                MaximumGuests = 8,
+
+                AvailableFrom = new DateTime(2026-08-03),
+
+                IsAccessible = true,
+
+                IsAbroad = false
             }
         };
         _nextId = _accommodations.Count;

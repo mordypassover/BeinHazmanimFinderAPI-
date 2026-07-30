@@ -38,7 +38,7 @@ public class ActivityPlace
     public int MinimumAge { get; set; }
 
     [Required]
-    public DateTime AvailableAt { get; set; }
+    public DateTime AvailableDate { get; set; }
 
     [Required]
     public bool IsAccessible { get; set; } = false;
