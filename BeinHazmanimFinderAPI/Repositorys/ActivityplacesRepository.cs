@@ -15,84 +15,51 @@ public class ActivityplacesRepository : IActivityplacesRepository
             new ActivityPlace
             {
                 Id = 1,
-
                 Name = "Cafe Rimon",
-
                 Category = "Restaurant",
-
                 City = "Jerusalem",
-
                 Area = "City Center",
-
                 TargetAudience = "Families",
-
                 PricePerPerson = 90,
-
                 MinimumAge = 0,
-
                 AvailableDate = new DateTime(2026-08-01),
-
                 IsAccessible = true,
-
                 RequiresKashrut = true,
-
                 KashrutAuthority = "Eida Charedit"
             },
             new ActivityPlace
             {
                 Id = 2,
-
                 Name = "Cafe Rimon",
-
                 Category = "Restaurant",
-
                 City = "Bnei Brak",
-
                 Area = "Rabbi Akiva",
-
                 TargetAudience = "Adults",
-
                 PricePerPerson = 140,
-
                 MinimumAge = 0,
-
                 AvailableDate = new DateTime(2026-08-02),
-
                 IsAccessible = false,
-
                 RequiresKashrut = true,
-
                 KashrutAuthority = "Rav Landau"
             },
             new ActivityPlace
             {
-                Id = 2,
-
+                Id = 3,
                 Name = "Ein Gedi Nature Trail",
-
                 Category = "Nature Trail",
-
                 City = "Ein Ged",
-
                 Area = "Dead Sea Basin",
-
                 TargetAudience = "Families",
-
                 PricePerPerson = 45,
-
                 MinimumAge = 0,
-
                 AvailableDate = new DateTime(2026-08-03),
-
                 IsAccessible = false,
-
                 RequiresKashrut = false,
-
                 KashrutAuthority = null
             }
 
         };
-        _nextId = _activitys.Count;
+        _nextId = 4;
     }
     public async Task<IEnumerable<ActivityPlace>> GetAllAsync()
     {

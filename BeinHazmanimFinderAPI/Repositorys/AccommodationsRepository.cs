@@ -87,7 +87,7 @@ public class AccommodationsRepository:IAccommodationsRepository
                 IsAbroad = false
             }
         };
-        _nextId = _accommodations.Count;
+        _nextId = 4;
     }
     public async Task<IEnumerable<Accommodation>> GetAllAsync()
     {
